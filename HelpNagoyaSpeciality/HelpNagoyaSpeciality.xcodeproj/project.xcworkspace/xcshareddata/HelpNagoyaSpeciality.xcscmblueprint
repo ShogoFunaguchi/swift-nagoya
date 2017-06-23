@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "1F7C303495578CF2BD76BA82858D70BBFDAC5F57",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "1F7C303495578CF2BD76BA82858D70BBFDAC5F57" : 9223372036854775807,
+    "605A2A053AA3988FF06CFE1B704AF7301B8625D2" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "FE5B9BF7-41F2-4A33-9758-74976BEAF6B1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "1F7C303495578CF2BD76BA82858D70BBFDAC5F57" : "nagoya\/",
+    "605A2A053AA3988FF06CFE1B704AF7301B8625D2" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "HelpNagoyaSpeciality",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "HelpNagoyaSpeciality\/HelpNagoyaSpeciality.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ShogoFunaguchi\/swift-nagoya.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1F7C303495578CF2BD76BA82858D70BBFDAC5F57"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ShogoFunaguchi\/learn-swift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "605A2A053AA3988FF06CFE1B704AF7301B8625D2"
+    }
+  ]
+}
