@@ -15,6 +15,8 @@ class GameScene : SKScene {
     // 丼
     var bowl:SKSpriteNode?
     
+    var timer: Timer?
+    
     
     override func didMove(to view: SKView) {
         
@@ -43,12 +45,28 @@ class GameScene : SKScene {
         self.addChild(bowl)
         
         self.fallNagoyaSpeciality()
+    
+        
+        self.timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(GameScene.fallNagoyaSpeciality), userInfo: nil, repeats: true)
     }
+    
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
-            let location = touch.location(in: <#T##SKNode#>)
+            let location = touch.location(in: self)
+            let action = SKAction.move(to: CGPoint(x: location.x, y: 100),  duration: 0.2)
+            self.bowl?.run(action)
+        }
+    }
+    
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            let location = touch.location(in: self)
+            let action = SKAction.move(to: CGPoint(x: location.x, y: 100), duration: 0.2)
+            self.bowl?.run(action)
+            
         }
     }
     
