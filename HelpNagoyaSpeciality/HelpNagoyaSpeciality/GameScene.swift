@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class GameScene : SKScene {
+class GameScene : SKScene, SKPhysicsContactDelegate {
     
     
     // 丼
@@ -17,12 +17,13 @@ class GameScene : SKScene {
     
     var timer: Timer?
     
+    var lowestShape:SKShapeNode?
     
     override func didMove(to view: SKView) {
         
         //重力
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -2.0)
-        
+        self.physicsWorld.contactDelegate = self
         
         //バックグランドイメージ
         let background = SKSpriteNode(imageNamed: "background")
@@ -31,6 +32,21 @@ class GameScene : SKScene {
         background.size = self.size
         self.addChild(background)
         
+        // 落下判定箇所の大きさ
+        let lowestShape = SKShapeNode(rectOf: CGSize(width: self.size.width*3, height: 10))
+        lowestShape.position = CGPoint(x: self.size.width*0.5, y: -10)
+        
+        // physicsBody を作って、lowestShapeにぶち込むイメージ
+        // ビットマスクも設定。
+        let physicsBody = SKPhysicsBody(rectangleOf: lowestShape.frame.size)
+        physicsBody.isDynamic = false
+        physicsBody.contactTestBitMask = 0x1 << 1
+        
+        lowestShape.physicsBody = physicsBody
+        
+        self.addChild(lowestShape)
+        self.lowestShape = lowestShape
+        
         
         // どんぶり
         let bowlTexture = SKTexture(imageNamed: "bowl")
@@ -38,14 +54,15 @@ class GameScene : SKScene {
         bowl.position = CGPoint(x: self.size.width*0.5,y: 100)
         bowl.size = CGSize(width: bowlTexture.size().width*0.5, height: bowlTexture.size().height*0.5)
         
+        // 重力
         bowl.physicsBody = SKPhysicsBody(texture: bowlTexture, size: bowl.size)
         bowl.physicsBody?.isDynamic = false
         
         self.bowl = bowl
         self.addChild(bowl)
         
-        self.fallNagoyaSpeciality()
-    
+//        self.fallNagoyaSpeciality()
+//    
         
         self.timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(GameScene.fallNagoyaSpeciality), userInfo: nil, repeats: true)
     }
@@ -81,10 +98,28 @@ class GameScene : SKScene {
         
         sprite.physicsBody = SKPhysicsBody(texture: texture, size: sprite.size)
         
+        // 落下点と同じビットマスクを置く。
+        sprite.physicsBody?.contactTestBitMask = 0x1 << 1
+        
         self.addChild(sprite)
 
     }
     
+    func didBegin(_ contact: SKPhysicsContact) {
+        
+        
+        
+        // 衝突したもののどちらかが落下点のノードだった場合ゲームオーバーの表示を出す。
+        if contact.bodyA.node == self.lowestShape || contact.bodyB.node == self.lowestShape {
+            
+            let sprite = SKSpriteNode(imageNamed: "gameOver")
+            sprite.position = CGPoint(x: self.size.width * 0.5, y: self.size.height*0.5)
+            
+            self.addChild(sprite)
+            self.isPaused = true
+            self.timer?.invalidate()
+        }
+    }
     
     
 }

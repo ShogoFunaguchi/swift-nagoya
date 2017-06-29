@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HelpNagoyaSpeciality/GameScene.swift"
-            timestampString = "520436862.239817"
+            timestampString = "520440101.879764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "didMove(to:)"
             landmarkType = "7">
          </BreakpointContent>
