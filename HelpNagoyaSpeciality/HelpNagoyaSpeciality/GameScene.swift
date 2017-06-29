@@ -72,9 +72,11 @@ class GameScene : SKScene {
     
     func fallNagoyaSpeciality() {
         
-        let texture = SKTexture(imageNamed: "0")
+        let index = Int(arc4random_uniform(7))
+        
+        let texture = SKTexture(imageNamed: "\(index)")
         let sprite = SKSpriteNode(texture: texture)
-        sprite.position = CGPoint(x:self.size.width*0.5, y:self.size.height*0.5)
+        sprite.position = CGPoint(x:self.size.width*0.5, y:self.size.height)
         sprite.size = CGSize(width: texture.size().width*0.5, height: texture.size().height*0.5)
         
         sprite.physicsBody = SKPhysicsBody(texture: texture, size: sprite.size)
