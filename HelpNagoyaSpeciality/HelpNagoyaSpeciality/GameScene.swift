@@ -19,6 +19,12 @@ class GameScene : SKScene, SKPhysicsContactDelegate {
     
     var lowestShape:SKShapeNode?
     
+    
+    var score = 0
+    var scoreLabel: SKLabelNode?
+    var scoreList = [100, 200, 300, 400, 500, 800, 1000, 1500]
+    
+    
     override func didMove(to view: SKView) {
         
         //重力
@@ -61,10 +67,21 @@ class GameScene : SKScene, SKPhysicsContactDelegate {
         self.bowl = bowl
         self.addChild(bowl)
         
+        let scoreLabel = SKLabelNode(fontNamed: "Helvetica")
+        scoreLabel.position = CGPoint(x: self.size.width * 0.92, y: self.size.height*0.78)
+        scoreLabel.text = "￥0"
+        scoreLabel.fontSize = 32
+        scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
+        scoreLabel.fontColor = UIColor.green
+        self.addChild(scoreLabel)
+        self.scoreLabel = scoreLabel
+        
+        
 //        self.fallNagoyaSpeciality()
 //    
         
         self.timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(GameScene.fallNagoyaSpeciality), userInfo: nil, repeats: true)
+        
     }
     
     
@@ -102,7 +119,9 @@ class GameScene : SKScene, SKPhysicsContactDelegate {
         sprite.physicsBody?.contactTestBitMask = 0x1 << 1
         
         self.addChild(sprite)
-
+        
+        self.score += self.scoreList[index]
+        self.scoreLabel?.text = "￥\(self.score)"
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
